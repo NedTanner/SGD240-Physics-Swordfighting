@@ -1,19 +1,34 @@
+using UnityEditor.Compilation;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerControls : MonoBehaviour
 {
-    private InputAction raiseBicep;
-    private InputAction raiseForearm;
-
+    [Header("References")]
     [SerializeField] private HingeJoint2D bicepJoint;
     [SerializeField] private HingeJoint2D forearmJoint;
+    private InputAction raiseBicep;
+    private InputAction raiseForearm;
+    private InputAction stepIn;
+    private InputAction stepBack;
+
+    [Header("Movement")]
+    [SerializeField] private float minStepDistance;
+    [SerializeField] private float maxStepDistance;
+    private float stepDistance;
+
+    [Header("Player")]
+    [SerializeField] private int playerNumber;
 
     private void Awake()
     {
-        raiseBicep = InputSystem.actions.FindAction("P1 Raise Bicep");
-        raiseForearm = InputSystem.actions.FindAction("P1 Raise Forearm");
+        raiseBicep = InputSystem.actions.FindAction("P" + playerNumber + " Bicep");
+        raiseForearm = InputSystem.actions.FindAction("P" + playerNumber + " Forearm");
+
+        stepIn = InputSystem.actions.FindAction("P" + playerNumber + " Step In");
+        stepBack = InputSystem.actions.FindAction("P" + playerNumber + "Step Back");
 
         raiseBicep.performed += _ => RaiseBicep();
         raiseForearm.performed += _ => RaiseForearm();
@@ -41,4 +56,11 @@ public class PlayerControls : MonoBehaviour
     {
         forearmJoint.useMotor = false;
     }
+
+    private void CalculateStep()
+    {
+
+    }
+
+
 }

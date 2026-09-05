@@ -7,7 +7,7 @@
             "id": "df70fa95-8a34-4494-b137-73ab6b9c7d37",
             "actions": [
                 {
-                    "name": "P1 Raise Bicep",
+                    "name": "P1 Bicep",
                     "type": "Button",
                     "id": "82f1eb8d-c3a2-43d5-b0a3-b8ebd105dbeb",
                     "expectedControlType": "",
@@ -16,9 +16,63 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "P1 Raise Forearm",
+                    "name": "P1 Forearm",
                     "type": "Button",
                     "id": "77b31764-8b84-4467-8170-c7f7ffd5a392",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "P1 Step In",
+                    "type": "Button",
+                    "id": "cd9c66eb-565c-4c36-a70c-4c3cfe0cf636",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "P1 Step Back",
+                    "type": "Button",
+                    "id": "377427aa-5c69-4018-a976-52fab4adb18b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "P2 Bicep",
+                    "type": "Button",
+                    "id": "c97b5933-7727-45b3-9b48-9a920c942ebf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "P2 Forearm",
+                    "type": "Button",
+                    "id": "34860305-646e-41a2-8376-8c8a9dc11b19",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "P2 Step In",
+                    "type": "Button",
+                    "id": "6859cccd-a44b-49c7-9722-8d206ca28b84",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "P2 Step Back",
+                    "type": "Button",
+                    "id": "8cae5f00-79e6-442b-8bb0-47d474ace7b5",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -33,7 +87,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "P1 Raise Bicep",
+                    "action": "P1 Bicep",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -44,7 +98,73 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "P1 Raise Forearm",
+                    "action": "P1 Forearm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d5f4e231-f183-4e2b-890e-a58a085985bc",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "P1 Step In",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e62033ff-fc8c-48a1-8043-8c471d681691",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "P1 Step Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e25bf75-65bf-4532-91d6-26e893d26dd8",
+                    "path": "<Keyboard>/rightBracket",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "P2 Bicep",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cef67094-8396-4a63-b59e-99dd6867cc2c",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "P2 Forearm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c1344a0d-b9ec-422f-b369-341d700646dd",
+                    "path": "<Keyboard>/comma",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "P2 Step In",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf3ff4b7-d11d-476c-b7cf-7e647a17e5ee",
+                    "path": "<Keyboard>/period",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "P2 Step Back",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
