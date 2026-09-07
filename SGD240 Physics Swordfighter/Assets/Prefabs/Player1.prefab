@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8150600635503044642}
   - component: {fileID: 293288637971031748}
   - component: {fileID: 5575721875975236215}
+  - component: {fileID: 6922558746506216623}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -36,6 +37,7 @@ Transform:
   - {fileID: 7812101371054104238}
   - {fileID: 3789994850876820420}
   - {fileID: 1337642286416906521}
+  - {fileID: 7009038650864228543}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &293288637971031748
@@ -81,6 +83,22 @@ MonoBehaviour:
   forearmJoint: {fileID: 7944438324509497145}
   minStepDistance: 0
   maxStepDistance: 0
+  playerNumber: 1
+--- !u!114 &6922558746506216623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2580804379618634378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64daffb70269ea341be2ddbd4291b756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetController
+  targetJoint: {fileID: 8274827797753114268}
+  targetPointer: {fileID: 7754728261825736995}
+  currentGuard: 0
   playerNumber: 1
 --- !u!1 &3723819274041444520
 GameObject:
@@ -308,7 +326,7 @@ HingeJoint2D:
   m_BreakAction: 0
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.03, y: 0.19}
-  m_ConnectedAnchor: {x: -7.24, y: 0.119999945}
+  m_ConnectedAnchor: {x: -10.240001, y: 0.119999945}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -911,7 +929,7 @@ HingeJoint2D:
   m_BreakAction: 0
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.33, y: 0}
-  m_ConnectedAnchor: {x: 0.070372105, y: 0.18000007}
+  m_ConnectedAnchor: {x: 0.07037258, y: 0.18000007}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -921,6 +939,37 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: -40
     m_UpperAngle: 50
+--- !u!1 &7754728261825736995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7009038650864228543}
+  m_Layer: 0
+  m_Name: TargetPointer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7009038650864228543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7754728261825736995}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7, y: 1.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8150600635503044642}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8240586079019950443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,6 +1173,14 @@ PrefabInstance:
       value: -0.0056642294
       objectReference: {fileID: 0}
     - target: {fileID: 5223655668716394823, guid: 885ba03187765e64bb222f8ede4881bd, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.45329276
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223655668716394823, guid: 885ba03187765e64bb222f8ede4881bd, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.045594875
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223655668716394823, guid: 885ba03187765e64bb222f8ede4881bd, type: 3}
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 6028042439393802807}
@@ -1176,10 +1233,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3149738276301716885, guid: 885ba03187765e64bb222f8ede4881bd, type: 3}
+    - {fileID: 6229156404122958263, guid: 885ba03187765e64bb222f8ede4881bd, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 885ba03187765e64bb222f8ede4881bd, type: 3}
+--- !u!257 &8274827797753114268 stripped
+TargetJoint2D:
+  m_CorrespondingSourceObject: {fileID: 7022663311759920435, guid: 885ba03187765e64bb222f8ede4881bd, type: 3}
+  m_PrefabInstance: {fileID: 1415145240876311471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8379952551160778329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7487244735847165430, guid: 885ba03187765e64bb222f8ede4881bd, type: 3}

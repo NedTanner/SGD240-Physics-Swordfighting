@@ -534,7 +534,7 @@ HingeJoint2D:
   m_BreakAction: 0
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.03, y: 0.19}
-  m_ConnectedAnchor: {x: 7.3, y: 0.119999945}
+  m_ConnectedAnchor: {x: 10.3, y: 0.119999945}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -544,6 +544,37 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: -30
     m_UpperAngle: 10
+--- !u!1 &6060555555516542675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6410923306108352332}
+  m_Layer: 0
+  m_Name: TargetPointer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6410923306108352332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6060555555516542675}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7, y: 1.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2141761852327369890}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6487582139150288168
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +712,7 @@ HingeJoint2D:
   m_BreakAction: 0
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.41, y: 0}
-  m_ConnectedAnchor: {x: -0.5445253, y: -0.00000015986227}
+  m_ConnectedAnchor: {x: -0.5445251, y: -0.00000015986227}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -829,7 +860,7 @@ HingeJoint2D:
   m_BreakAction: 0
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.33, y: 0}
-  m_ConnectedAnchor: {x: -0.070372105, y: 0.18000007}
+  m_ConnectedAnchor: {x: -0.07037258, y: 0.18000007}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -941,6 +972,7 @@ GameObject:
   - component: {fileID: 2141761852327369890}
   - component: {fileID: 3696249617272135352}
   - component: {fileID: 3155194860317546837}
+  - component: {fileID: 5939622947112688254}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -966,6 +998,7 @@ Transform:
   - {fileID: 8905483907412086639}
   - {fileID: 1734649601873765682}
   - {fileID: 8184846071919958182}
+  - {fileID: 6410923306108352332}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &3696249617272135352
@@ -1011,6 +1044,22 @@ MonoBehaviour:
   forearmJoint: {fileID: 7280991113011511878}
   minStepDistance: 0
   maxStepDistance: 0
+  playerNumber: 2
+--- !u!114 &5939622947112688254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7349569404554241124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64daffb70269ea341be2ddbd4291b756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetController
+  targetJoint: {fileID: 735347083176816869}
+  targetPointer: {fileID: 6060555555516542675}
+  currentGuard: 0
   playerNumber: 2
 --- !u!1 &8815882053022752173
 GameObject:
@@ -1152,6 +1201,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6541313115004009674, guid: 26ff374aee2561e4298c0732a20ecbea, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.45329297
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541313115004009674, guid: 26ff374aee2561e4298c0732a20ecbea, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.045594875
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541313115004009674, guid: 26ff374aee2561e4298c0732a20ecbea, type: 3}
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 3151627935152335859}
@@ -1160,10 +1217,16 @@ PrefabInstance:
       value: P2Rapier
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 487705200417017333, guid: 26ff374aee2561e4298c0732a20ecbea, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26ff374aee2561e4298c0732a20ecbea, type: 3}
+--- !u!257 &735347083176816869 stripped
+TargetJoint2D:
+  m_CorrespondingSourceObject: {fileID: 4677465785053918121, guid: 26ff374aee2561e4298c0732a20ecbea, type: 3}
+  m_PrefabInstance: {fileID: 5394687967492113228}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5236814682053890725 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 175973721472651753, guid: 26ff374aee2561e4298c0732a20ecbea, type: 3}

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
-public class PlayerControls : MonoBehaviour
+public class PlayerBase : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private HingeJoint2D bicepJoint;
@@ -20,11 +20,11 @@ public class PlayerControls : MonoBehaviour
     private float stepDistance;
 
     [Header("Player")]
-    [SerializeField] private int playerNumber;
+    public int playerNumber;
 
     private void Awake()
     {
-        raiseBicep = InputSystem.actions.FindAction("P" + playerNumber + " Bicep");
+        raiseBicep = InputSystem.actions.FindAction("P" + playerNumber + " Bicep"); // Modularity, allows reuse of this code between players
         raiseForearm = InputSystem.actions.FindAction("P" + playerNumber + " Forearm");
 
         stepIn = InputSystem.actions.FindAction("P" + playerNumber + " Step In");
