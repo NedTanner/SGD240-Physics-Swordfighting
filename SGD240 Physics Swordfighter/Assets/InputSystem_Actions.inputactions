@@ -25,24 +25,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "P1 Step In",
-                    "type": "Button",
-                    "id": "cd9c66eb-565c-4c36-a70c-4c3cfe0cf636",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "P1 Step Back",
-                    "type": "Button",
-                    "id": "377427aa-5c69-4018-a976-52fab4adb18b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "P2 Bicep",
                     "type": "Button",
                     "id": "c97b5933-7727-45b3-9b48-9a920c942ebf",
@@ -61,22 +43,22 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "P2 Step In",
-                    "type": "Button",
-                    "id": "6859cccd-a44b-49c7-9722-8d206ca28b84",
-                    "expectedControlType": "",
+                    "name": "P2 Movement",
+                    "type": "Value",
+                    "id": "80b9af81-0d2c-42d5-bb9e-d03074338a11",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "P2 Step Back",
-                    "type": "Button",
-                    "id": "8cae5f00-79e6-442b-8bb0-47d474ace7b5",
-                    "expectedControlType": "",
+                    "name": "P1 Movement",
+                    "type": "Value",
+                    "id": "9e45591b-80b7-4569-a5be-f4a56a053955",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -104,28 +86,6 @@
                 },
                 {
                     "name": "",
-                    "id": "d5f4e231-f183-4e2b-890e-a58a085985bc",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "P1 Step In",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e62033ff-fc8c-48a1-8043-8c471d681691",
-                    "path": "<Keyboard>/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "P1 Step Back",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "4e25bf75-65bf-4532-91d6-26e893d26dd8",
                     "path": "<Keyboard>/rightBracket",
                     "interactions": "",
@@ -147,26 +107,70 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "c1344a0d-b9ec-422f-b369-341d700646dd",
+                    "name": "2D Vector",
+                    "id": "fb2a963f-610a-4a51-ba17-9e5143a1fd8e",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "P2 Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "ba8d41cb-05d8-4023-b9ff-e25392b21872",
                     "path": "<Keyboard>/comma",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "P2 Step In",
+                    "action": "P2 Movement",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "bf3ff4b7-d11d-476c-b7cf-7e647a17e5ee",
+                    "name": "right",
+                    "id": "4d458253-2f31-4fb0-99fa-c67ee8cba73c",
                     "path": "<Keyboard>/period",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "P2 Step Back",
+                    "action": "P2 Movement",
                     "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "a61086d8-8e74-4ccf-b70b-4e13bb38facf",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "P1 Movement",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "99e327f5-4b61-4572-8b64-d6feea294559",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "P1 Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "6ee8ccd7-76bc-4f2a-a008-261ca50e17de",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "P1 Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
