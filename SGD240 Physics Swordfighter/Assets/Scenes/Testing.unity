@@ -1064,12 +1064,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3155194860317546837, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+      propertyPath: chargeSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155194860317546837, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+      propertyPath: lungeCooldown
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155194860317546837, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+      propertyPath: maxChargeTime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155194860317546837, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+      propertyPath: movementSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155194860317546837, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
       propertyPath: defaultMaxStep
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3155194860317546837, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
       propertyPath: minStepDistance
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155194860317546837, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+      propertyPath: defaultMaxStepDistance
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3456578465112230397, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -1122,6 +1142,10 @@ PrefabInstance:
     - target: {fileID: 7349569404554241124, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7349569404554241124, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8815882053022752173, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
       propertyPath: m_Layer
@@ -1178,8 +1202,20 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5575721875975236215, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
+      propertyPath: chargeSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575721875975236215, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
       propertyPath: lungeCooldown
-      value: 1
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575721875975236215, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
+      propertyPath: maxChargeTime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575721875975236215, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
+      propertyPath: movementSpeed
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5575721875975236215, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
       propertyPath: defaultMaxStep
@@ -1191,7 +1227,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5575721875975236215, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
       propertyPath: minStepDistance
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575721875975236215, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
+      propertyPath: defaultMaxStepDistance
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5652525080067700276, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
       propertyPath: m_Layer

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -14,15 +15,20 @@ public class PlayerBase : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float minStepDistance;
-    [SerializeField] private float defaultMaxStep;
+    [SerializeField] private float defaultMaxStepDistance;
     [SerializeField] private float lungeCooldown;
-    [SerializeField] private bool isCharging;
-    private float maxStepDistance;
-    private float stepDistance;
-    private Vector2 directionModifier;
-    private float lungeCharge;
-    private float lungeCooldownTimer;
+    [SerializeField] private float movementSpeed;
     private Vector2 lungeDestination;
+    private Vector2 directionModifier;
+    private float lungeCooldownTimer;
+    private float maxStepDistance;
+    private bool isMoving;
+
+    [Header("Lunge Charge Parameters")]
+    [SerializeField] private float maxChargeTime;
+    [SerializeField] private float chargeSpeed = 1.5f;
+    private bool isCharging;
+    private float lungeCharge;
 
     [Header("Player")]
     public int playerNumber;
@@ -45,60 +51,78 @@ public class PlayerBase : MonoBehaviour
         moveAction.canceled += _ => Lunge();
 
         oppositePlayer = (playerNumber == 1) ? 2 : 1; // Checks if player is 1 or 2, sets opposite number to... you guessed it the opposite!
-        lungeDestination = transform.position;
+        maxStepDistance = defaultMaxStepDistance * directionModifier.x;
     }
 
     private void Update()
     {
-        directionModifier = moveAction.ReadValue<Vector2>(); // Only really need the x value, either -1,0,1 and multiplies relevant x values based on this modifier
+        directionModifier = moveAction.ReadValue<Vector2>(); // Either -1,0,1 and multiplies relevant x values based on this modifier for left anf right movement
+
+        LayerMask playerLayerMask = LayerMask.GetMask("Player " + oppositePlayer);
+
 
         if (lungeCooldownTimer > 0)
         {
             lungeCooldownTimer -= Time.deltaTime;
         }
 
+        if (isMoving)
+        {
+            //Debug.DrawRay(lungeDestination, transform.up * 0.5f, Color.blue);
+
+            transform.position = Vector2.MoveTowards(transform.position, lungeDestination, movementSpeed * Time.deltaTime);
+
+            if (Vector2.Distance(transform.position, lungeDestination) < 0.01f) // Keep position consistent + end check
+            {
+                transform.position = lungeDestination;
+                isMoving = false;
+            }
+        }
+
+
+
+
         if (isCharging)
         {
-            Vector2 raycastStart = new Vector2(transform.position.x + (minStepDistance * directionModifier.x), transform.position.y);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, directionModifier, defaultMaxStepDistance + 3f, playerLayerMask);
 
-            RaycastHit2D hit = Physics2D.Raycast(raycastStart, directionModifier, defaultMaxStep);
+            maxStepDistance = defaultMaxStepDistance * directionModifier.x;
 
-            if (hit)
+            if (hit.collider != null)
             {
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player " + oppositePlayer)) // Moves destination away from obstacle, inverts based on direction. Detects opposite player
+                maxStepDistance = hit.transform.position.x - transform.position.x;
+                maxStepDistance -= 3f * directionModifier.x;
+                //  If player's (absoulute) lunge distance is less than their minimum step distance, it sets it to their minstep distance multiplied by which direction they're facing instead
+                if (Mathf.Abs(maxStepDistance) < minStepDistance)
                 {
-                    lungeDestination = (Vector2)hit.transform.position;
-                    lungeDestination.x -= 2f * directionModifier.x;
-                    lungeDestination.x = (lungeDestination.normalized.x < minStepDistance * directionModifier.x) ? lungeDestination.x = minStepDistance * directionModifier.x : lungeDestination.x;
-                    //  If player's (normalised) lunge distance is less than their minimum step distance, it sets it to their minstep distance multiplied by which direction they're facing instead
+                    maxStepDistance = minStepDistance * directionModifier.x;
                 }
+            }
 
-                else
-                {
-                    lungeDestination = raycastStart + (defaultMaxStep * directionModifier);
+            float maxCharge = Mathf.Abs(maxStepDistance);
 
-                    Debug.DrawRay(raycastStart, minStepDistance * directionModifier, Color.pink);
-                }
+            lungeCharge += Time.deltaTime * chargeSpeed * directionModifier.x;
 
+            if (directionModifier.x < 0)
+            {
+                lungeCharge = Mathf.Clamp(lungeCharge, -maxCharge, -minStepDistance); // Swaps around values to account for larger negative variables, this sucks!
             }
 
             else
             {
-                lungeDestination = (Vector2)transform.position + (defaultMaxStep * directionModifier);
-
-                Debug.DrawRay(raycastStart, minStepDistance * directionModifier, Color.pink);
+                lungeCharge = Mathf.Clamp(lungeCharge, minStepDistance, maxCharge);
             }
+                Debug.Log(lungeCharge);
         }
 
-        // Draw Forward axis (Z) in Blue
-        Debug.DrawRay(lungeDestination, transform.forward * 3f, Color.blue);
+        /*Vector2 debugOrigin = new Vector2(transform.position.x + maxStepDistance, transform.position.y);
 
-        // Draw Up axis (Y) in Green
-        Debug.DrawRay(lungeDestination, transform.up * 3f, Color.green);
+        Debug.DrawRay(debugOrigin, transform.up * 1f, Color.green);
 
-        // Draw Right axis (X) in Red
-        Debug.DrawRay(lungeDestination, transform.right * 3f, Color.red);
+        Debug.DrawRay(debugOrigin, transform.right * 1f, Color.red);*/
+
     }
+
     private void RaiseBicep()
     {
         bicepJoint.useMotor = true;
@@ -123,7 +147,6 @@ public class PlayerBase : MonoBehaviour
     {
         if (lungeCooldownTimer <= 0)
         {
-            lungeCooldownTimer = Time.deltaTime + lungeCooldown;
             isCharging = true;
         }
 
@@ -135,7 +158,19 @@ public class PlayerBase : MonoBehaviour
 
     private void Lunge()
     {
+        if (isCharging)
+        {
+            lungeDestination = transform.TransformPoint(new Vector2(lungeCharge, 0)); // Marks lunge destination in the world so it stays consistent even if parent transform moves
 
+            lungeCooldownTimer = lungeCooldown;
+            isCharging = false;
+            isMoving = true;
+        }
+
+        else
+        {
+            return;
+        }
     }
 
 
