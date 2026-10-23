@@ -34,6 +34,9 @@ public class PlayerBase : MonoBehaviour
     public int playerNumber;
     private int oppositePlayer = 1;
 
+    [Header("Animation")]
+    [SerializeField] private Animator playerAnimator;
+
     private void Awake()
     {
         raiseBicep = InputSystem.actions.FindAction("P" + playerNumber + " Bicep"); // Modularity, allows reuse of this code between players
@@ -112,7 +115,6 @@ public class PlayerBase : MonoBehaviour
             {
                 lungeCharge = Mathf.Clamp(lungeCharge, minStepDistance, maxCharge);
             }
-                Debug.Log(lungeCharge);
         }
 
         /*Vector2 debugOrigin = new Vector2(transform.position.x + maxStepDistance, transform.position.y);
@@ -165,6 +167,16 @@ public class PlayerBase : MonoBehaviour
             lungeCooldownTimer = lungeCooldown;
             isCharging = false;
             isMoving = true;
+
+            if (directionModifier.x < 0)
+            {
+                playerAnimator.SetTrigger("StepBackward");
+            }
+
+            else
+            {
+                playerAnimator.SetTrigger("StepForward");
+            }
         }
 
         else
