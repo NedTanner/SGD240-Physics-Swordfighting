@@ -1,8 +1,8 @@
-using UnityEditor.Compilation;
-using UnityEditor.Timeline.Actions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
+using UnityEngine.UIElements;
+using static UnityEditor.PlayerSettings;
 
 public class PlayerBase : MonoBehaviour
 {
@@ -11,30 +11,118 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private HingeJoint2D forearmJoint;
     private InputAction raiseBicep;
     private InputAction raiseForearm;
-    private InputAction stepIn;
-    private InputAction stepBack;
+    private InputAction moveAction;
 
     [Header("Movement")]
     [SerializeField] private float minStepDistance;
-    [SerializeField] private float maxStepDistance;
-    private float stepDistance;
+    [SerializeField] private float defaultMaxStepDistance;
+    [SerializeField] private float lungeCooldown;
+    [SerializeField] private float movementSpeed;
+    private Vector2 lungeDestination;
+    private Vector2 directionModifier;
+    private float lungeCooldownTimer;
+    private float maxStepDistance;
+    private bool isMoving;
+
+    [Header("Lunge Charge Parameters")]
+    [SerializeField] private float maxChargeTime;
+    [SerializeField] private float chargeSpeed = 1.5f;
+    private bool isCharging;
+    private float lungeCharge;
 
     [Header("Player")]
     public int playerNumber;
+    private int oppositePlayer = 1;
+
+    [Header("Animation")]
+    [SerializeField] private Animator playerAnimator;
 
     private void Awake()
     {
         raiseBicep = InputSystem.actions.FindAction("P" + playerNumber + " Bicep"); // Modularity, allows reuse of this code between players
         raiseForearm = InputSystem.actions.FindAction("P" + playerNumber + " Forearm");
 
-        stepIn = InputSystem.actions.FindAction("P" + playerNumber + " Step In");
-        stepBack = InputSystem.actions.FindAction("P" + playerNumber + "Step Back");
+        moveAction = InputSystem.actions.FindAction("P" + playerNumber + " Movement");
 
         raiseBicep.performed += _ => RaiseBicep();
         raiseForearm.performed += _ => RaiseForearm();
 
         raiseBicep.canceled += _ => ReleaseBicep();
         raiseForearm.canceled += _ => ReleaseForearm();
+
+        moveAction.performed += _ => LungeCheck();
+        moveAction.canceled += _ => Lunge();
+
+        oppositePlayer = (playerNumber == 1) ? 2 : 1; // Checks if player is 1 or 2, sets opposite number to... you guessed it the opposite!
+        maxStepDistance = defaultMaxStepDistance * directionModifier.x;
+    }
+
+    private void Update()
+    {
+        directionModifier = moveAction.ReadValue<Vector2>(); // Either -1,0,1 and multiplies relevant x values based on this modifier for left anf right movement
+
+        LayerMask playerLayerMask = LayerMask.GetMask("Player " + oppositePlayer);
+
+
+        if (lungeCooldownTimer > 0)
+        {
+            lungeCooldownTimer -= Time.deltaTime;
+        }
+
+        if (isMoving)
+        {
+            //Debug.DrawRay(lungeDestination, transform.up * 0.5f, Color.blue);
+
+            transform.position = Vector2.MoveTowards(transform.position, lungeDestination, movementSpeed * Time.deltaTime);
+
+            if (Vector2.Distance(transform.position, lungeDestination) < 0.01f) // Keep position consistent + end check
+            {
+                transform.position = lungeDestination;
+                isMoving = false;
+            }
+        }
+
+
+
+
+        if (isCharging)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, directionModifier, defaultMaxStepDistance + 3f, playerLayerMask);
+
+            maxStepDistance = defaultMaxStepDistance * directionModifier.x;
+
+            if (hit.collider != null)
+            {
+                maxStepDistance = hit.transform.position.x - transform.position.x;
+                maxStepDistance -= 3f * directionModifier.x;
+                //  If player's (absoulute) lunge distance is less than their minimum step distance, it sets it to their minstep distance multiplied by which direction they're facing instead
+                if (Mathf.Abs(maxStepDistance) < minStepDistance)
+                {
+                    maxStepDistance = minStepDistance * directionModifier.x;
+                }
+            }
+
+            float maxCharge = Mathf.Abs(maxStepDistance);
+
+            lungeCharge += Time.deltaTime * chargeSpeed * directionModifier.x;
+
+            if (directionModifier.x < 0)
+            {
+                lungeCharge = Mathf.Clamp(lungeCharge, -maxCharge, -minStepDistance); // Swaps around values to account for larger negative variables, this sucks!
+            }
+
+            else
+            {
+                lungeCharge = Mathf.Clamp(lungeCharge, minStepDistance, maxCharge);
+            }
+        }
+
+        /*Vector2 debugOrigin = new Vector2(transform.position.x + maxStepDistance, transform.position.y);
+
+        Debug.DrawRay(debugOrigin, transform.up * 1f, Color.green);
+
+        Debug.DrawRay(debugOrigin, transform.right * 1f, Color.red);*/
+
     }
 
     private void RaiseBicep()
@@ -57,9 +145,44 @@ public class PlayerBase : MonoBehaviour
         forearmJoint.useMotor = false;
     }
 
-    private void CalculateStep()
+    private void LungeCheck() // The leftovers of a nightmarish coding journey, I don't know if I even need this anymore. I'm keeping it.
     {
+        if (lungeCooldownTimer <= 0)
+        {
+            isCharging = true;
+        }
 
+        else
+        {
+            return;
+        }
+    }
+
+    private void Lunge()
+    {
+        if (isCharging)
+        {
+            lungeDestination = transform.TransformPoint(new Vector2(lungeCharge, 0)); // Marks lunge destination in the world so it stays consistent even if parent transform moves
+
+            lungeCooldownTimer = lungeCooldown;
+            isCharging = false;
+            isMoving = true;
+
+            if (directionModifier.x < 0)
+            {
+                playerAnimator.SetTrigger("StepBackward");
+            }
+
+            else
+            {
+                playerAnimator.SetTrigger("StepForward");
+            }
+        }
+
+        else
+        {
+            return;
+        }
     }
 
 

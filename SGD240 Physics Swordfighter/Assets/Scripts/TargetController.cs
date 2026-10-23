@@ -14,8 +14,8 @@ public class TargetController : MonoBehaviour
     [SerializeField] private GameObject targetPointer;
 
     [Header("Guard Type")]
-    public GuardType currentGuard;
-    private Vector2 highGuardPos = new Vector2(7f, 2.5f);
+    [SerializeField] private GuardType currentGuard;
+    private Vector2 highGuardPos = new Vector2(7f, 2.5f); // Not very customisable, but I already customised them and my word is FINAL
     private Vector2 midGuardPos = new Vector2(7f, 1.5f);
     private Vector2 lowGuardPos = new Vector2(6f, 1f);
 
@@ -24,7 +24,7 @@ public class TargetController : MonoBehaviour
 
     private void Awake()
     {
-        if (playerNumber == 2)
+        if (playerNumber == 2) // Inverts local pointer position for Player 2
         {
             highGuardPos = new Vector2(-highGuardPos.x, 2.5f);
             midGuardPos = new Vector2(-midGuardPos.x, 1.5f);
