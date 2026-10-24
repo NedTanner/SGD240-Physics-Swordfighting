@@ -168,15 +168,34 @@ public class PlayerBase : MonoBehaviour
             isCharging = false;
             isMoving = true;
 
-            if (directionModifier.x < 0)
+            playerAnimator.SetFloat("LungeForce", Mathf.Abs(lungeCharge));
+            
+            if (playerNumber == 1)
             {
-                playerAnimator.SetTrigger("StepBackward");
+                if (directionModifier.x < 0)
+                {
+                    playerAnimator.SetTrigger("StepBackward");
+                }
+
+                else
+                {
+                    playerAnimator.SetTrigger("StepForward");
+                }
             }
 
-            else
+            else if (playerNumber == 2)
             {
-                playerAnimator.SetTrigger("StepForward");
+                if (directionModifier.x < 0)
+                {
+                    playerAnimator.SetTrigger("StepForward");
+                }
+
+                else
+                {
+                    playerAnimator.SetTrigger("StepBackward");
+                }
             }
+
         }
 
         else
