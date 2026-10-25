@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &112462541 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 995597604211948524, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
+  m_PrefabInstance: {fileID: 2800263534941193751}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,12 +255,66 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.62, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1149603913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1149603915}
+  - component: {fileID: 1149603914}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1149603914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149603913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399bcbf147e861940812c38fbb92ac1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CamAdjuster
+  maxZoom: 8
+  minZoom: 30
+  mainCamera: {fileID: 519420031}
+  playerOne: {fileID: 112462541}
+  playerTwo: {fileID: 1372417739}
+--- !u!4 &1149603915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149603913}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.46711, y: -0.85665, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1372417739 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2181815005136303885, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+  m_PrefabInstance: {fileID: 1975343434941083364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1800072913
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,8 +400,8 @@ Transform:
   m_GameObject: {fileID: 1800072913}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -8.25, z: 0}
-  m_LocalScale: {x: 40, y: 6, z: 1}
+  m_LocalPosition: {x: 0, y: -19.2888, z: 0}
+  m_LocalScale: {x: 150, y: 28.077599, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -355,6 +414,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 837011017754705172, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+      propertyPath: movementSpeed
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 837011017754705172, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+      propertyPath: minStepDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 837011017754705172, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+      propertyPath: defaultMaxStepDistance
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2181815005136303885, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -452,6 +523,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3207405794865976637, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
+      propertyPath: movementSpeed
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207405794865976637, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
+      propertyPath: minStepDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207405794865976637, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
+      propertyPath: defaultMaxStepDistance
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8983091188022755783, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -465,7 +548,8 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 519420032}
   - {fileID: 2800263534941193751}
   - {fileID: 1975343434941083364}
   - {fileID: 1800072915}
+  - {fileID: 1149603915}
+  - {fileID: 519420032}

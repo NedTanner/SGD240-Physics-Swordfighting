@@ -203,17 +203,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.21666667
         value: {x: 0, y: 0, z: 28.702}
-        inSlope: {x: 0, y: 0, z: -405.57}
-        outSlope: {x: 0, y: 0, z: -405.57}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.25
-        value: {x: 0, y: 0, z: 6.366}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: -200.06}
+        outSlope: {x: 0, y: 0, z: -200.06}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -221,8 +212,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.3
         value: {x: 0, y: 0, z: 16.914}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: -284.68002}
+        outSlope: {x: 0, y: 0, z: -284.68002}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -2004,15 +1995,6 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.25
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 0.3
         value: 0
         inSlope: 0
@@ -2080,15 +2062,6 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.21666667
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.25
         value: 0
         inSlope: 0
         outSlope: 0
@@ -2165,17 +2138,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.21666667
         value: 28.702
-        inSlope: -405.57
-        outSlope: -405.57
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.25
-        value: 6.366
-        inSlope: 0
-        outSlope: 0
+        inSlope: -200.06
+        outSlope: -200.06
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -2183,8 +2147,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.3
         value: 16.914
-        inSlope: 0
-        outSlope: 0
+        inSlope: -284.68002
+        outSlope: -284.68002
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -3196,7 +3160,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Legs/FootFront
+    path: Legs/ThighFront
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3208,7 +3172,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Legs/FootFront
+    path: Legs/ThighFront
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3220,7 +3184,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Legs/FootFront
+    path: Legs/ThighFront
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3268,7 +3232,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Legs/ThighFront
+    path: Legs/FootFront
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3280,7 +3244,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Legs/ThighFront
+    path: Legs/FootFront
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3292,7 +3256,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Legs/ThighFront
+    path: Legs/FootFront
     classID: 4
     script: {fileID: 0}
     flags: 0
