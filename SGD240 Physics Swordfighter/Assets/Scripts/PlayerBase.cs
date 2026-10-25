@@ -71,8 +71,6 @@ public class PlayerBase : MonoBehaviour
 
         if (isMoving)
         {
-            //Debug.DrawRay(lungeDestination, transform.up * 0.5f, Color.blue);
-
             transform.position = Vector2.MoveTowards(transform.position, lungeDestination, movementSpeed * Time.deltaTime);
 
             if (Vector2.Distance(transform.position, lungeDestination) < 0.01f) // Keep position consistent + end check
@@ -116,12 +114,6 @@ public class PlayerBase : MonoBehaviour
                 lungeCharge = Mathf.Clamp(lungeCharge, minStepDistance, maxCharge);
             }
         }
-
-        /*Vector2 debugOrigin = new Vector2(transform.position.x + maxStepDistance, transform.position.y);
-
-        Debug.DrawRay(debugOrigin, transform.up * 1f, Color.green);
-
-        Debug.DrawRay(debugOrigin, transform.right * 1f, Color.red);*/
     }
 
     private void RaiseBicep()
@@ -182,7 +174,7 @@ public class PlayerBase : MonoBehaviour
                 }
             }
 
-            else if (playerNumber == 2)
+            else if (playerNumber == 2) // Swaps animations to correctly correspond to direction of movement. A drawback of the otherwise modular movement input system
             {
                 if (directionModifier.x < 0)
                 {
