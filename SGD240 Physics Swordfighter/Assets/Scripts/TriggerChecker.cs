@@ -67,4 +67,12 @@ public class TriggerChecker : MonoBehaviour
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        foreach (TriggerSensor trigger in triggers) // More optimised than checking in update, starts only when one of the array triggers reports a change
+        {
+            trigger.OnSensorActivation -= CheckSensors;
+        }
+    }
 }

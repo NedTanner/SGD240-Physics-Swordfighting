@@ -50,4 +50,22 @@ public class TargetController : MonoBehaviour
         targetJoint.target = (Vector2)targetPointer.transform.position;
     }
 
+    public void ChangeGuard(int guardIndex) // For UI interactions
+    {
+        if (guardIndex == 0)
+        {
+            currentGuard = GuardType.Low;
+        }
+
+        else if (guardIndex == 1)
+        {
+            currentGuard = GuardType.Mid;
+        }
+
+        else if (guardIndex == 2)
+        {
+            currentGuard = GuardType.High;
+        }
+    }
+
 }

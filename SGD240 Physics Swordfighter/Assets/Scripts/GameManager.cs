@@ -1,5 +1,5 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour
     public enum GameState { PreGame, Playing, EndGame }
     public static GameState CurrentGameState { get; private set; }
 
+    [Header("Interface")]
+    [SerializeField] private GameObject endScreen;
+    [SerializeField] private GameObject startingScreen;
+    [SerializeField] private TextMeshProUGUI endingText;
+
     private void Awake()
     {
         TriggerChecker.OnPlayerDamage += DamagePlayer; // Connect to both player's TriggerCheckers
@@ -23,7 +28,13 @@ public class GameManager : MonoBehaviour
         player2Health = maxHealth;
     }
 
-    private void DamagePlayer(int playerNumber)
+    private void Start()
+    {
+        startingScreen.SetActive(true);
+        endScreen.SetActive(false);
+    }
+
+    private void DamagePlayer(int playerNumber) // Subtracts player health, then checks if either player has won yet
     {
          if (playerNumber == 1)
          {
@@ -56,9 +67,27 @@ public class GameManager : MonoBehaviour
 
     private void VictorCheck()
     {
+        if (CurrentGameState == GameState.EndGame) // Stop repeated logic
+        {
+            return;
+        }
+
         if (player1Health == 0 || player2Health == 0)
         {
             CurrentGameState = GameState.EndGame;
+            endScreen.SetActive(true);
+            endingText.SetText("player " + winningPlayer + " wins!");
         }
+    }
+
+    public void StartGame()
+    {
+        CurrentGameState = GameState.Playing;
+        startingScreen.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        TriggerChecker.OnPlayerDamage -= DamagePlayer;
     }
 }

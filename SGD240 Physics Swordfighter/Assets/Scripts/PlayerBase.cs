@@ -59,59 +59,59 @@ public class PlayerBase : MonoBehaviour
 
     private void Update()
     {
-        directionModifier = moveAction.ReadValue<Vector2>(); // Either -1,0,1 and multiplies relevant x values based on this modifier for left anf right movement
-
-        LayerMask playerLayerMask = LayerMask.GetMask("Player " + oppositePlayer);
-
-
-        if (lungeCooldownTimer > 0)
+        if (GameManager.CurrentGameState == GameManager.GameState.Playing)
         {
-            lungeCooldownTimer -= Time.deltaTime;
-        }
+            directionModifier = moveAction.ReadValue<Vector2>(); // Either -1,0,1 and multiplies relevant x values based on this modifier for left anf right movement
 
-        if (isMoving)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, lungeDestination, movementSpeed * Time.deltaTime);
+            LayerMask playerLayerMask = LayerMask.GetMask("Player " + oppositePlayer);
 
-            if (Vector2.Distance(transform.position, lungeDestination) < 0.01f) // Keep position consistent + end check
+
+            if (lungeCooldownTimer > 0)
             {
-                transform.position = lungeDestination;
-                isMoving = false;
+                lungeCooldownTimer -= Time.deltaTime;
             }
-        }
 
-
-
-
-        if (isCharging)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, directionModifier, defaultMaxStepDistance + 3f, playerLayerMask);
-
-            maxStepDistance = defaultMaxStepDistance * directionModifier.x;
-
-            if (hit.collider != null)
+            if (isMoving)
             {
-                maxStepDistance = hit.transform.position.x - transform.position.x;
-                maxStepDistance -= 3f * directionModifier.x;
-                //  If player's (absoulute) lunge distance is less than their minimum step distance, it sets it to their minstep distance multiplied by which direction they're facing instead
-                if (Mathf.Abs(maxStepDistance) < minStepDistance)
+                transform.position = Vector2.MoveTowards(transform.position, lungeDestination, movementSpeed * Time.deltaTime);
+
+                if (Vector2.Distance(transform.position, lungeDestination) < 0.01f) // Keep position consistent + end check
                 {
-                    maxStepDistance = minStepDistance * directionModifier.x;
+                    transform.position = lungeDestination;
+                    isMoving = false;
                 }
             }
 
-            float maxCharge = Mathf.Abs(maxStepDistance);
-
-            lungeCharge += Time.deltaTime * chargeSpeed * directionModifier.x;
-
-            if (directionModifier.x < 0)
+            if (isCharging)
             {
-                lungeCharge = Mathf.Clamp(lungeCharge, -maxCharge, -minStepDistance); // Swaps around values to account for larger negative variables, this sucks!
-            }
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, directionModifier, defaultMaxStepDistance + 3f, playerLayerMask);
 
-            else
-            {
-                lungeCharge = Mathf.Clamp(lungeCharge, minStepDistance, maxCharge);
+                maxStepDistance = defaultMaxStepDistance * directionModifier.x;
+
+                if (hit.collider != null)
+                {
+                    maxStepDistance = hit.transform.position.x - transform.position.x;
+                    maxStepDistance -= 3f * directionModifier.x;
+                    //  If player's (absoulute) lunge distance is less than their minimum step distance, it sets it to their minstep distance multiplied by which direction they're facing instead
+                    if (Mathf.Abs(maxStepDistance) < minStepDistance)
+                    {
+                        maxStepDistance = minStepDistance * directionModifier.x;
+                    }
+                }
+
+                float maxCharge = Mathf.Abs(maxStepDistance);
+
+                lungeCharge += Time.deltaTime * chargeSpeed * directionModifier.x;
+
+                if (directionModifier.x < 0)
+                {
+                    lungeCharge = Mathf.Clamp(lungeCharge, -maxCharge, -minStepDistance); // Swaps around values to account for larger negative variables, this sucks!
+                }
+
+                else
+                {
+                    lungeCharge = Mathf.Clamp(lungeCharge, minStepDistance, maxCharge);
+                }
             }
         }
     }
@@ -151,47 +151,50 @@ public class PlayerBase : MonoBehaviour
 
     private void Lunge()
     {
-        if (isCharging)
+        if (GameManager.CurrentGameState == GameManager.GameState.Playing)
         {
-            lungeDestination = transform.TransformPoint(new Vector2(lungeCharge, 0)); // Marks lunge destination in the world so it stays consistent even if parent transform moves
-
-            playerAnimator.SetFloat("LungeForce", Mathf.Abs(lungeCharge)); // For lunge animation blendtree
-            lungeCooldownTimer = lungeCooldown;
-            isCharging = false;
-            isMoving = true;
-            lungeCharge = 0;
-
-            if (playerNumber == 1)
+            if (isCharging)
             {
-                if (directionModifier.x < 0)
+                lungeDestination = transform.TransformPoint(new Vector2(lungeCharge, 0)); // Marks lunge destination in the world so it stays consistent even if parent transform moves
+
+                playerAnimator.SetFloat("LungeForce", Mathf.Abs(lungeCharge)); // For lunge animation blendtree
+                lungeCooldownTimer = lungeCooldown;
+                isCharging = false;
+                isMoving = true;
+                lungeCharge = 0;
+
+                if (playerNumber == 1)
                 {
-                    playerAnimator.SetTrigger("StepBackward");
+                    if (directionModifier.x < 0)
+                    {
+                        playerAnimator.SetTrigger("StepBackward");
+                    }
+
+                    else
+                    {
+                        playerAnimator.SetTrigger("StepForward");
+                    }
                 }
 
-                else
+                else if (playerNumber == 2) // Swaps animations to correctly correspond to direction of movement. A drawback of the otherwise modular movement input system
                 {
-                    playerAnimator.SetTrigger("StepForward");
+                    if (directionModifier.x < 0)
+                    {
+                        playerAnimator.SetTrigger("StepForward");
+                    }
+
+                    else
+                    {
+                        playerAnimator.SetTrigger("StepBackward");
+                    }
                 }
+
             }
 
-            else if (playerNumber == 2) // Swaps animations to correctly correspond to direction of movement. A drawback of the otherwise modular movement input system
+            else
             {
-                if (directionModifier.x < 0)
-                {
-                    playerAnimator.SetTrigger("StepForward");
-                }
-
-                else
-                {
-                    playerAnimator.SetTrigger("StepBackward");
-                }
+                return;
             }
-
-        }
-
-        else
-        {
-            return;
         }
     }
 

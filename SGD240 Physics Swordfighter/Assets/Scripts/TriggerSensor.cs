@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TriggerSensor : MonoBehaviour
 {
-    [Header("Stuff!")]
+    [Header("Trigger")]
     public bool isOccupied;
     private float defaultAngularDamping;
     private float defaultLinearDamping;
