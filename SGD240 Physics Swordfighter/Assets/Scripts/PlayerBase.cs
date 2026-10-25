@@ -122,7 +122,6 @@ public class PlayerBase : MonoBehaviour
         Debug.DrawRay(debugOrigin, transform.up * 1f, Color.green);
 
         Debug.DrawRay(debugOrigin, transform.right * 1f, Color.red);*/
-
     }
 
     private void RaiseBicep()
@@ -164,12 +163,12 @@ public class PlayerBase : MonoBehaviour
         {
             lungeDestination = transform.TransformPoint(new Vector2(lungeCharge, 0)); // Marks lunge destination in the world so it stays consistent even if parent transform moves
 
+            playerAnimator.SetFloat("LungeForce", Mathf.Abs(lungeCharge)); // For lunge animation blendtree
             lungeCooldownTimer = lungeCooldown;
             isCharging = false;
             isMoving = true;
+            lungeCharge = 0;
 
-            playerAnimator.SetFloat("LungeForce", Mathf.Abs(lungeCharge));
-            
             if (playerNumber == 1)
             {
                 if (directionModifier.x < 0)

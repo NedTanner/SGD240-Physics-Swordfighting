@@ -100,7 +100,7 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: LungeForce
     m_Type: 1
-    m_DefaultFloat: 2
+    m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
@@ -160,16 +160,8 @@ BlendTree:
     m_DirectBlendParameter: LungeForce
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: acdd56adb8b15d049a28846c14af12c0, type: 2}
-    m_Threshold: 3
-    m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: LungeForce
-    m_Mirror: 0
-  - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 738b3fa658dafd749aaef40864681de0, type: 2}
-    m_Threshold: 7
+    m_Threshold: 6
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -178,7 +170,7 @@ BlendTree:
   m_BlendParameter: LungeForce
   m_BlendParameterY: LungeForce
   m_MinThreshold: 0
-  m_MaxThreshold: 7
+  m_MaxThreshold: 6
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0

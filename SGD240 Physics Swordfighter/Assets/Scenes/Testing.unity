@@ -304,7 +304,7 @@ Transform:
   m_GameObject: {fileID: 1149603913}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.46711, y: -0.85665, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -416,11 +416,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 837011017754705172, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
       propertyPath: movementSpeed
-      value: 17
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 837011017754705172, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
       propertyPath: minStepDistance
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 837011017754705172, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
       propertyPath: defaultMaxStepDistance
@@ -525,11 +525,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3207405794865976637, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
       propertyPath: movementSpeed
-      value: 17
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3207405794865976637, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
       propertyPath: minStepDistance
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3207405794865976637, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
       propertyPath: defaultMaxStepDistance
