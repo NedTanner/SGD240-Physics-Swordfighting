@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class TriggerSensor : MonoBehaviour
 {
+    [Header("Stuff!")]
     public bool isOccupied;
     private float defaultAngularDamping;
     private float defaultLinearDamping;
 
-    public event Action SensorActivation;
+    public event Action OnSensorActivation;
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class TriggerSensor : MonoBehaviour
     {
         if (hit.CompareTag("Weapon"))
         {
-            SensorActivation.Invoke(); // Contact TriggerChecker for a change in the array, and to begin checking if any triggers in array are still occupied
+            OnSensorActivation?.Invoke(); // Contact TriggerChecker for a change in the array, and to begin checking if any triggers in array are still occupied
             isOccupied = true;
         }
     }

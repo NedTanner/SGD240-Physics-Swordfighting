@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class TriggerChecker : MonoBehaviour
 {
-    [Header("Game Manager")]
-
-    [Header("Trigger Babies")]
+    [Header("Triggers")]
     public TriggerSensor[] triggers;
     private bool bodyOccupied;
 
@@ -13,13 +11,18 @@ public class TriggerChecker : MonoBehaviour
     [SerializeField] private float maxDamageCooldown;
     private float damageCooldown;
 
+    public static event Action<int> OnPlayerDamage;
+    private PlayerBase playerBase;
+
     private void Awake()
     {
+        playerBase = GetComponent<PlayerBase>();
+
         bodyOccupied = false;
 
         foreach (TriggerSensor trigger in triggers) // More optimised than checking in update, starts only when one of the array triggers reports a change
         {
-            trigger.SensorActivation += CheckSensors;
+            trigger.OnSensorActivation += CheckSensors;
         }
     }
 
@@ -31,8 +34,9 @@ public class TriggerChecker : MonoBehaviour
             {
                 bodyOccupied = true;
 
-                if (damageCooldown <= 0) // Reduce health code here
+                if (damageCooldown <= 0) // Player successfully damaged
                 {
+                    OnPlayerDamage?.Invoke(playerBase.playerNumber);
                     damageCooldown = maxDamageCooldown;
                 }
             }
