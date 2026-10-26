@@ -20,6 +20,7 @@ public class UIHeart : MonoBehaviour
 
     public void PopHeart()
     {
+        animator.SetInteger("Player Number", playerInt); // Sometimes awake doesn't assign it properly!
         animator.SetTrigger("Pop");
     }
 
