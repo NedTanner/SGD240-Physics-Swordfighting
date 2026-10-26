@@ -3923,6 +3923,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350457390}
   m_CullTransparentMesh: 1
+--- !u!1 &1358427933 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2479897272177831320, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
+  m_PrefabInstance: {fileID: 3668629921313646693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1358427937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358427933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07808fb4a0d4004aad25d565bd0dcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponParticleManager
+  modifiedAngularDamping: 60
+  modifiedLinearDamping: 60
+  bloodParticle: {fileID: 6059275610244050824, guid: 2e1b54d22bc852b4ca69063c0b7fcc8e, type: 3}
+  clashParticle: {fileID: 9140309854732849014, guid: 85e3208f574be1847b906c2bab7c8bc0, type: 3}
 --- !u!1 &1374099977
 GameObject:
   m_ObjectHideFlags: 0
@@ -4051,7 +4072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1378168414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4786,7 +4807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1660840583
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5869,6 +5890,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 571835539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2075175476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 13193837373571313, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+  m_PrefabInstance: {fileID: 2173243830138016973}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2075175483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075175476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07808fb4a0d4004aad25d565bd0dcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponParticleManager
+  modifiedAngularDamping: 60
+  modifiedLinearDamping: 60
+  bloodParticle: {fileID: 6059275610244050824, guid: 2e1b54d22bc852b4ca69063c0b7fcc8e, type: 3}
+  clashParticle: {fileID: 9140309854732849014, guid: 85e3208f574be1847b906c2bab7c8bc0, type: 3}
 --- !u!1 &2111677358
 GameObject:
   m_ObjectHideFlags: 0
@@ -5984,9 +6026,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 47829398163024129, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+      propertyPath: defaultMaxStepDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1321758865927977989, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
       propertyPath: maxDamageCooldown
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1321758865927977989, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
       propertyPath: triggers.Array.size
@@ -5996,6 +6042,14 @@ PrefabInstance:
       propertyPath: 'triggers.Array.data[4]'
       value: 
       objectReference: {fileID: 1971385152}
+    - target: {fileID: 1754792290005098956, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394229398953547623, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4687841807792497241, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -6056,13 +6110,17 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1754792290005098956, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4687841807792497241, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
       insertIndex: 5
       addedObject: {fileID: 1971385151}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 13193837373571313, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 2075175483}
   m_SourcePrefab: {fileID: 100100000, guid: 5450da9f5fe7f8c4c87c556dcdb9f3fd, type: 3}
 --- !u!4 &3102305482278059515 stripped
 Transform:
@@ -6079,7 +6137,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 880765503069416524, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
       propertyPath: maxDamageCooldown
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 880765503069416524, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
       propertyPath: triggers.Array.size
@@ -6149,13 +6207,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7468294213332603234, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
+      propertyPath: defaultMaxStepDistance
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7835074536133911202, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3309982725165267416, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
       insertIndex: 5
       addedObject: {fileID: 1397513349}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2479897272177831320, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1358427937}
   m_SourcePrefab: {fileID: 100100000, guid: 4398ab8c341334b4d8920cfdd4b7b30b, type: 3}
 --- !u!114 &4447342249908830009 stripped
 MonoBehaviour:

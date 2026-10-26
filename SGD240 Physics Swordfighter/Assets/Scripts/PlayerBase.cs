@@ -55,6 +55,8 @@ public class PlayerBase : MonoBehaviour
 
         oppositePlayer = (playerNumber == 1) ? 2 : 1; // Checks if player is 1 or 2, sets opposite number to... you guessed it the opposite!
         maxStepDistance = defaultMaxStepDistance * directionModifier.x;
+
+        playerAnimator.SetInteger("PlayerNumber", playerNumber);
     }
 
     private void Update()
@@ -141,6 +143,7 @@ public class PlayerBase : MonoBehaviour
         if (lungeCooldownTimer <= 0)
         {
             isCharging = true;
+            playerAnimator.SetTrigger("ChargeLunge");
         }
 
         else
