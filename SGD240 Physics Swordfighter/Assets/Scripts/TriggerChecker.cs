@@ -57,6 +57,7 @@ public class TriggerChecker : MonoBehaviour
                 if (trigger.isOccupied)
                 {
                     bodyOccupied = true;
+                    damageCooldown = maxDamageCooldown;
 
                     return;
                 }
@@ -64,7 +65,6 @@ public class TriggerChecker : MonoBehaviour
                 else
                 {
                     bodyOccupied = false;
-                    damageCooldown = maxDamageCooldown;
                 }
             }
         }
