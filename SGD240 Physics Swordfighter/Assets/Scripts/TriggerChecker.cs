@@ -57,6 +57,8 @@ public class TriggerChecker : MonoBehaviour
                 if (trigger.isOccupied)
                 {
                     bodyOccupied = true;
+
+                    return;
                 }
 
                 else

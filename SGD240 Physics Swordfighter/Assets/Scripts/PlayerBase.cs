@@ -93,11 +93,12 @@ public class PlayerBase : MonoBehaviour
                 if (hit.collider != null)
                 {
                     maxStepDistance = hit.transform.position.x - transform.position.x;
-                    maxStepDistance -= 3f * directionModifier.x;
-                    //  If player's (absoulute) lunge distance is less than their minimum step distance, it sets it to their minstep distance multiplied by which direction they're facing instead
-                    if (Mathf.Abs(maxStepDistance) < minStepDistance)
+
+                    if (Mathf.Abs(maxStepDistance) <= 5) //  If player's (absoulute) lunge distance is less than boundary float, invert direction
                     {
-                        maxStepDistance = minStepDistance * directionModifier.x;
+                        directionModifier.x *= -1f;
+
+                        maxStepDistance = 0;
                     }
                 }
 
