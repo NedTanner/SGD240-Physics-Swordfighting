@@ -52,21 +52,28 @@ public class TriggerChecker : MonoBehaviour
 
         if (bodyOccupied) // Sets damage cooldown to repeatedly fill until sword has fully left body, can't leave your sword in opponent and farm damage
         {
+            bool triggersOccupied = false;
+
             foreach (TriggerSensor trigger in triggers)
             {
                 if (trigger.isOccupied)
                 {
-                    bodyOccupied = true;
+                    triggersOccupied = true; // Set and use temp variable to avoid false negatives on 'bodyOccupied'
                     damageCooldown = maxDamageCooldown;
-
-                    return;
-                }
-
-                else
-                {
-                    bodyOccupied = false;
+                    break;
                 }
             }
+
+            if (triggersOccupied)
+            {
+                bodyOccupied = true;
+            }
+
+            else
+            {
+                bodyOccupied = false;
+            }
+
         }
     }
 

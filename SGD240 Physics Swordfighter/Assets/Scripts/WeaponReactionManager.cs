@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponParticleManager : MonoBehaviour
+public class WeaponReactionManager : MonoBehaviour
 {
     [Header("Weapon")]
     [SerializeField] private float modifiedAngularDamping; // Slow weapon when stabbing to simulate resistance
@@ -23,6 +23,7 @@ public class WeaponParticleManager : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D trigger)
     {
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.linearDamping = modifiedLinearDamping;
         rb.angularDamping = modifiedAngularDamping;
 
@@ -35,6 +36,7 @@ public class WeaponParticleManager : MonoBehaviour
     {
         rb.linearDamping = defaultLinearDamping;
         rb.angularDamping = defaultAngularDamping;
+        rb.constraints = RigidbodyConstraints2D.None;
     }
 
     private void OnCollisionEnter2D(Collision2D collider)
