@@ -27,7 +27,7 @@ public class TriggerSensor : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D hit)
     {
-       if (isOccupied)
+        if (hit.CompareTag("Weapon"))
         {
             isOccupied = false;
         }
