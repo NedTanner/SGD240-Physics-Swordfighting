@@ -17,7 +17,10 @@ public class GameManager : MonoBehaviour
     [Header("Interface")]
     [SerializeField] private GameObject endScreen;
     [SerializeField] private GameObject startingScreen;
+    [SerializeField] private GameObject hearts;
     [SerializeField] private TextMeshProUGUI endingText;
+    [SerializeField] private UIHeart[] player1Hearts;
+    [SerializeField] private UIHeart[] player2Hearts;
 
     private void Awake()
     {
@@ -26,11 +29,14 @@ public class GameManager : MonoBehaviour
 
         player1Health = maxHealth;
         player2Health = maxHealth;
+
+        Time.timeScale = 0.8f;
     }
 
     private void Start()
     {
         startingScreen.SetActive(true);
+        hearts.SetActive(false);
         endScreen.SetActive(false);
     }
 
@@ -47,6 +53,19 @@ public class GameManager : MonoBehaviour
                     winningPlayer = 2;
                 }
             }
+
+            foreach (UIHeart heartIcon in player1Hearts) // Checks health UI, modular setup if max health is increased or decreased, also if multiple hearts are lost at once
+            {
+                if (heartIcon.healthThreshold > player1Health)
+                {
+                    heartIcon.PopHeart();
+                }
+
+                else
+                {
+                    continue;
+                }
+            }
          }
 
          if (playerNumber == 2)
@@ -60,7 +79,20 @@ public class GameManager : MonoBehaviour
                     winningPlayer = 1;
                 }
             }
-         }
+
+            foreach (UIHeart heartIcon in player2Hearts)
+            {
+                if (heartIcon.healthThreshold > player2Health)
+                {
+                    heartIcon.PopHeart();
+                }
+
+                else
+                {
+                    continue;
+                }
+            }
+        }
 
         VictorCheck();
     }
@@ -77,6 +109,7 @@ public class GameManager : MonoBehaviour
             CurrentGameState = GameState.EndGame;
             endScreen.SetActive(true);
             endingText.SetText("player " + winningPlayer + " wins!");
+            Time.timeScale = 0.1f;
         }
     }
 
@@ -84,9 +117,10 @@ public class GameManager : MonoBehaviour
     {
         CurrentGameState = GameState.Playing;
         startingScreen.SetActive(false);
+        hearts.SetActive(true);
     }
 
-    private void OnDestroy()
+    private void OnDestroy() // Unsubscribe to damageplayer event!
     {
         TriggerChecker.OnPlayerDamage -= DamagePlayer;
     }

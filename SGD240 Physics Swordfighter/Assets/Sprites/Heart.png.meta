@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 22cd8346784068243ba0b4bebbd5ca4d
+guid: 3ef277d1c09e1994f94beb1f6d78d776
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5361638670207584391
-    second: SalletButtonSelect_0
+      213: 4606908045521496030
+    second: Heart_0
+  - first:
+      213: -4195582761621981391
+    second: Heart_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +103,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SalletButtonSelect_0
+      name: Heart_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 13
-        width: 200
-        height: 144
+        x: 45
+        y: 11
+        width: 168
+        height: 233
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 78888bf96fd586a40800000000000000
-      internalID: 5361638670207584391
+      spriteID: 137f4cb15bb46c5c0800000000000000
+      internalID: -4195582761621981391
       vertices: []
       indices: 
       edges: []
@@ -125,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a1a70f6f9e8b213409f3dd9331498b8a
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +138,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SalletButtonSelect_0: 5361638670207584391
+      Heart_0: 4606908045521496030
+      Heart_1: -4195582761621981391
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
